@@ -3,7 +3,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
 
 //Como estamos trabajando con un sistema de libros
-//Cada entidad/modelo que gestionamos es un libro con sus atributor
+//Cada entidad/modelo que gestionamos es un libro con sus atributos
 
 public class Book {
 
@@ -12,6 +12,9 @@ public class Book {
    private String title;
 
    private boolean isRented;
+
+
+   //Todo model debe de tener su identificador , cada libro es independiente
 
    private static long counter=1;
 
@@ -25,16 +28,18 @@ public class Book {
 
    public Book(String title, String author)
    {
+
+      this.id=counter++;
       this.title=title;
       this.author=author;
       this.isRented=false;
-      this.id=counter++;
       this.rentedBy=null;
 
    }
+   public Long getId() { return id; }
    public String getTitle(){return this.title;}
    public boolean isRented(){return  this.isRented;}
-
+   public String getAuthor() { return author; }
    public String getRentedBy() { return rentedBy; }
 
    public boolean rentBook(String userEmail) {

@@ -11,12 +11,16 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-    List<Book> bookInventory;
+    //Lista que gestiona los libros presentes en nuestro inventario
+    List<Book> bookInventory= new ArrayList<>();
+
+
     public List<Book> getAllBooks() {
         return bookInventory;
     }
     public Book addBook(String title , String author)
     {
+
         Book book= new Book(title,author);
         bookInventory.add(book);
         return  book;
@@ -45,6 +49,10 @@ public class BookService {
         }
         return false;
     }
+
+    //Para devolver un libro tambien necesitamos el mail y el titulo del libro
+    //Posteriormente si encontramos un libro con ese titulo , cambiamos su estado de disponibilidad
+    //Dentro del propio modelo , y eliminamos el valor de el correo
     public boolean returnBook(String email, String title) {
         Optional<Book> bookOpt = bookInventory.stream()
                 .filter(b -> b.getTitle().equalsIgnoreCase(title) && b.isRented() && b.getRentedBy().equals(email))
