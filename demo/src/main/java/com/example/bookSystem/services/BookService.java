@@ -51,7 +51,8 @@ public class BookService {
     }
 
     //Para devolver un libro tambien necesitamos el mail y el titulo del libro
-    //Posteriormente si encontramos un libro con ese titulo , cambiamos su estado de disponibilidad
+    //Posteriormente si encontramos un libro con ese titulo, ren
+    // rentado por ese usuario(correo), y que este rentado, cambiamos su estado de disponibilidad
     //Dentro del propio modelo , y eliminamos el valor de el correo
     public boolean returnBook(String email, String title) {
         Optional<Book> bookOpt = bookInventory.stream()
